@@ -189,7 +189,7 @@ ORDER BY s.customer_id, s.order_date, mn.product_name) --end of CTE
 
 SELECT mc.*,
        CASE WHEN mc.member like 'N' THEN NULL
-       ELSE RANK () OVER (PARTITION BY mc.customer_id, mc.member ORDER BY mc.order_date asc)
+       ELSE RANK () OVER (PARTITION BY mc.customer_id, mc.member ORDER BY mc.order_date ASC)
        END AS rank
 FROM member_cte mc;
 ```
