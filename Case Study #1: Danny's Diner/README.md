@@ -152,10 +152,10 @@ TBA
 ## Bonus Questions: 
 1.Recreate the table output using the available data: 
 ```sql
-SELECT s.customer_id, --Column name required
-	     s.order_date, --Column name required
-       mn.product_name, --Column name required
-       mn.price, --Column name required
+SELECT s.customer_id, 
+	     s.order_date, 
+       mn.product_name,
+       mn.price, 
        CASE 
             WHEN s.order_date < mm.join_date THEN 'N'
             WHEN s.order_date >= mm.join_date THEN 'Y'
@@ -193,5 +193,3 @@ SELECT mc.*,
        END AS rank
 FROM member_cte mc;
 ```
-
-
