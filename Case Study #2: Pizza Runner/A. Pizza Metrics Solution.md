@@ -28,7 +28,7 @@
    2           3
    3           1
    
-5. How many of each type of pizza was delivered?
+4. How many of each type of pizza was delivered?
    ```sql
    SELECT COUNT(r.order_id) AS count,
           p.pizza_name
@@ -46,7 +46,7 @@
    3        Vegetarian
    9        Meatlovers
  
-6. How many Vegetarian and Meatlovers were ordered by each customer?
+5. How many Vegetarian and Meatlovers were ordered by each customer?
    ```sql
    SELECT c.customer_id, p.pizza_name, c.pizza_id as amount
    FROM customer_orders_temp c
@@ -55,7 +55,7 @@
    GROUP BY p.pizza_name, c.customer_id, c.pizza_id
    ORDER BY c.customer_id;
    ```
-9. What was the maximum number of pizzas delivered in a single order?
+6. What was the maximum number of pizzas delivered in a single order?
     ```sql
     SELECT c.order_id, COUNT(c.pizza_id) as pizza_count
     FROM customer_orders_temp c
@@ -67,8 +67,8 @@
     LIMIT 1;
     ```
     ANS: order_id 4 ordered 4 pizzas
-11. For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
-12. How many pizzas were delivered that had both exclusions and extras?
+7. For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
+8. How many pizzas were delivered that had both exclusions and extras?
     ```sql
     SELECT c.order_id
     FROM customer_orders_temp c
@@ -79,5 +79,5 @@
     AND (r.cancellation LIKE ' ' OR cancellation LIKE '');
     ```
     ANS: order_id 10
-13. What was the total volume of pizzas ordered for each hour of the day?
-14. What was the volume of orders for each day of the week?
+9. What was the total volume of pizzas ordered for each hour of the day?
+10. What was the volume of orders for each day of the week?
