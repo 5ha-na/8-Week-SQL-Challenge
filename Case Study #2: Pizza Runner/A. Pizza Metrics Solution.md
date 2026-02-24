@@ -48,7 +48,7 @@
  
 6. How many Vegetarian and Meatlovers were ordered by each customer?
    ```sql
-   SELECT c.customer_id, p.pizza_name, c.pizza_id
+   SELECT c.customer_id, p.pizza_name, c.pizza_id as amount
    FROM customer_orders_temp c
    INNER JOIN pizza_names p
    ON c.pizza_id = p.pizza_id
@@ -56,7 +56,28 @@
    ORDER BY c.customer_id;
    ```
 9. What was the maximum number of pizzas delivered in a single order?
-10. For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
-11. How many pizzas were delivered that had both exclusions and extras?
-12. What was the total volume of pizzas ordered for each hour of the day?
-13. What was the volume of orders for each day of the week?
+    ```sql
+    SELECT c.order_id, COUNT(c.pizza_id) as pizza_count
+    FROM customer_orders_temp c
+    INNER JOIN runner_orders_temp r
+    ON c.order_id = r.order_id
+    WHERE r.cancellation LIKE ' ' OR cancellation LIKE ''
+    GROUP BY c.order_id
+    ORDER BY pizza_count DESC
+    LIMIT 1;
+    ```
+    ANS: order_id 4 ordered 4 pizzas
+11. For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
+12. How many pizzas were delivered that had both exclusions and extras?
+    ```sql
+    SELECT c.order_id
+    FROM customer_orders_temp c
+    INNER JOIN runner_orders_temp r
+    ON c.order_id = r.order_id
+    WHERE (c.exclusions NOT LIKE ' ' AND c.exclusions NOT LIKE '') 
+    AND (c.extras NOT LIKE ' ' AND c.extras NOT LIKE '')
+    AND (r.cancellation LIKE ' ' OR cancellation LIKE '');
+    ```
+    ANS: order_id 10
+13. What was the total volume of pizzas ordered for each hour of the day?
+14. What was the volume of orders for each day of the week?
