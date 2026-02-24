@@ -16,7 +16,7 @@
    ```sql
    SELECT r.runner_id, COUNT(r.cancellation) AS successful_orders
    FROM runner_orders_temp r
-   WHERE r.cancellation LIKE ' ' OR cancellation LIKE '' --have to account for ' ' and ''
+   WHERE r.cancellation LIKE ' ' OR r.cancellation LIKE '' --have to account for ' ' and ''
    GROUP BY r.runner_id
    ORDER BY r.runner_id;
    ```
@@ -76,7 +76,7 @@
     ON c.order_id = r.order_id
     WHERE (c.exclusions NOT LIKE ' ' AND c.exclusions NOT LIKE '') 
     AND (c.extras NOT LIKE ' ' AND c.extras NOT LIKE '')
-    AND (r.cancellation LIKE ' ' OR cancellation LIKE '');
+    AND (r.cancellation LIKE ' ' OR r.cancellation LIKE '');
     ```
     ANS: order_id 10
 9. What was the total volume of pizzas ordered for each hour of the day?
