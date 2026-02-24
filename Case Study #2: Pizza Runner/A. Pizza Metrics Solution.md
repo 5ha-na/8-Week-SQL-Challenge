@@ -30,7 +30,7 @@
    
 4. How many of each type of pizza was delivered?
    ```sql
-   SELECT COUNT(r.order_id) AS count,
+   SELECT COUNT(r.order_id) AS amount,
           p.pizza_name
    FROM customer_orders_temp c
    RIGHT JOIN runner_orders_temp r 
@@ -61,7 +61,7 @@
     FROM customer_orders_temp c
     INNER JOIN runner_orders_temp r
     ON c.order_id = r.order_id
-    WHERE r.cancellation LIKE ' ' OR cancellation LIKE ''
+    WHERE r.cancellation LIKE ' ' OR r.cancellation LIKE ''
     GROUP BY c.order_id
     ORDER BY pizza_count DESC
     LIMIT 1;
