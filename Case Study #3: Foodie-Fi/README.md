@@ -28,15 +28,16 @@ ANS: 1000 customers
 ```
 2. What is the monthly distribution of trial plan start_date values for our dataset - use the start of the month as the group by value
 ```sql
-SELECT DATE_PART('month', s.start_date) AS Month_no, --only returns numerical value of month
-TO_CHAR(s.start_date, 'FMMonth') AS Month, --formats the date
-COUNT(s.customer_id) AS Total
+SELECT 
+	TO_CHAR(s.start_date, 'FMMonth') AS Month, --formats the date
+	COUNT(s.customer_id) AS Total
 FROM foodie_fi.subscriptions s
 INNER JOIN foodie_fi.plans p
 ON p.plan_id=s.plan_id
 WHERE p.plan_id = 0
-GROUP BY DATE_PART('month', s.start_date), TO_CHAR(s.start_date, 'FMMonth')
-ORDER BY Month_no
+GROUP BY DATE_PART('month', s.start_date), --numeric value of months
+	     Month
+ORDER BY DATE_PART('month', s.start_date)
 ```
 
 3. What plan start_date values occur after the year 2020 for our dataset? Show the breakdown by count of events for each plan_name
