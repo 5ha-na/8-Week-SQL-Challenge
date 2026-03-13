@@ -60,6 +60,7 @@ SELECT
 		 FROM foodie_fi.subscriptions s),1) AS Churn_perc
 FROM foodie_fi.subscriptions s
 WHERE plan_id = 4
+ANS: 307 customers and 30.7%
 ```
 5. How many customers have churned straight after their initial free trial - what percentage is this rounded to the nearest whole number?
 6. What is the number and percentage of customer plans after their initial free trial?
